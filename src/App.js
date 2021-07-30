@@ -29,7 +29,9 @@ function App() {
   }
 
   const search = (e) => {
+    if (e.isComposing || e.keyCode === 229) return; 
     if (e.code === 'Enter') {
+      e.preventDefault();
       const name = e.target.value;
       console.log(name, stationList)
       if (name.length > 0 && stationList.length > 0) {
@@ -44,7 +46,7 @@ function App() {
 
   return (
     <div className="app">
-      { !station && <input type="text" onChange={handleInput} onKeyDown={search}/> }
+      <input type="text" onChange={handleInput} onKeyDown={search}/>
     </div>
   );
 }
