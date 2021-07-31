@@ -3,9 +3,10 @@ import './App.css';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { AppContext, AppContextProvider } from './contexts/AppContext';
 import { getStationInfo, getStations } from './utils/data';
+import PageSwitcher from './components/PageSwitcher';
 
 function App() {
-  const { station, setStation } = useContext(AppContext)
+  const { station, setStation, switchStatus, setSwitchStatus } = useContext(AppContext)
   const [stationList, setStationList] = useState([])
   const stations = useRef();
 
@@ -38,6 +39,7 @@ function App() {
         getStationInfo(stationList[0], true).then(res => {
           console.log(res)
           setStation(res)
+          setSwitchStatus(true)
           e.target.value = '';
         })
       }
@@ -45,9 +47,16 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <input type="text" onChange={handleInput} onKeyDown={search}/>
-    </div>
+    <PageSwitcher status={switchStatus}>
+      <div style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{ flexDirection: 'column' }}>
+          <input type="text" onChange={handleInput} onKeyDown={search} />
+          <div style={{ position: 'relative', flexDirection: 'column', zIndex: 1 }}>
+            { stationList.map((stationName) => <span>{stationName}</span>) }
+          </div>
+        </div>
+      </div>
+    </PageSwitcher>
   );
 }
 
