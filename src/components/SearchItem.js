@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-export default function SearchItem({ itemName }) {
-    const [focused, setFocused] = useState(false)
+export default function SearchItem({ itemName, focus = false, onHover, onClick }) {
     const defaultStyle = {
         width: '300px',
         color: 'black',
@@ -13,8 +12,8 @@ export default function SearchItem({ itemName }) {
     }
 
     return (
-        <div onFocus={() => console.log('onFocus')} onFocusCapture={() => console.log('onFocusCapture')} onMouseOver={() => setFocused(true)} onMouseLeave={() => setFocused(false)}>
-            <span style={{ ...defaultStyle, ...(focused && focusStyle)}}>{itemName}</span>
+        <div onMouseOver={onHover} onMouseDown={onClick}>
+            <span style={{ ...defaultStyle, ...(focus && focusStyle)}}>{itemName}</span>
         </div>
     )
 }

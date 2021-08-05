@@ -31,7 +31,8 @@ const doorStyle = {
     position: 'absolute',
     width: "50vw",
     height: "100vh",
-    backgroundColor: "black"
+    backgroundColor: "black",
+    zIndex: 10
 }
 
 const Door = ({ animStyle, restStyle }) => (

@@ -8,7 +8,9 @@ import SearchItem from './components/SearchItem';
 
 function App() {
   const { station, setStation, switchStatus, setSwitchStatus } = useContext(AppContext)
+  const [input, setInput] = useState('')
   const [stationList, setStationList] = useState([])
+  const [stationIndex, setStationIndex] = useState(0)
   const stations = useRef();
 
   useEffect(() => {
@@ -24,26 +26,44 @@ function App() {
     }
   }, [])
 
+  useEffect(() => {
+    const array = input === '' ? [] : stations.current?.filter(station => station.indexOf(input) !== -1)
+    console.log(input, array)
+    setStationList(array)
+    stationIndex !== 0 && setStationIndex(0);
+  }, [input])
+
   const handleInput = (e) => {
     const text = e.target.value;
-    const array = stations.current?.filter(station => station.indexOf(text) !== -1)
-    setStationList(array)
+    setInput(text)
   }
 
-  const search = (e) => {
-    if (e.isComposing || e.keyCode === 229) return; 
+  const handleKeyDown = (e) => {
+    if (e.isComposing || e.keyCode === 229) return;
+    // 자동완성 선택
+    if (e.code === 'ArrowDown') {
+      e.preventDefault()
+      stationIndex === stationList.length-1 ? setStationIndex(0) : setStationIndex(stationIndex+1)
+    } else if (e.code === 'ArrowUp') {
+      e.preventDefault()
+      stationIndex === 0 ? setStationIndex(stationList.length-1) : setStationIndex(stationIndex-1)
+    }
+    // 검색
     if (e.code === 'Enter') {
       e.preventDefault();
-      const name = e.target.value;
-      console.log(name, stationList)
-      if (name.length > 0 && stationList.length > 0) {
-        getStationInfo(stationList[0], true).then(res => {
-          console.log(res)
-          setStation(res)
-          setSwitchStatus(true)
-          e.target.value = '';
-        })
-      }
+      search();
+    }
+  }
+
+  const search = () => {
+    console.log(stationList[stationIndex])
+    if (stationList.length > 0) {
+      getStationInfo(stationList[stationIndex], true).then(res => {
+        console.log(res)
+        setStation(res)
+        setSwitchStatus(true)
+        setInput('')
+      })
     }
   }
 
@@ -51,9 +71,16 @@ function App() {
     <PageSwitcher status={switchStatus}>
       <div style={{ flex: 1, flexDirection: 'column' }}>
         <div style={{ flexDirection: 'column', marginTop: 'calc(50vh - 15px)', alignItems: 'center' }}>
-          <input type="text" onChange={handleInput} onKeyDown={search} />
+          <input id="search" type="text" onChange={handleInput} onKeyDown={handleKeyDown} onBlur={() => setStationList([])} onFocus={handleInput} value={input}/>
           <div style={{ flexDirection: 'column', zIndex: 1 }}>
-            { stationList.map((stationName) => <SearchItem key={stationName} itemName={stationName} />) }
+            { stationList.map((stationName, idx) => 
+              <SearchItem 
+                key={stationName} 
+                itemName={stationName}
+                focus={idx === stationIndex}
+                onHover={() => setStationIndex(idx)}
+                onClick={search}
+                />) }
           </div>
         </div>
         
