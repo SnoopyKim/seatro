@@ -4,6 +4,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { AppContext, AppContextProvider } from './contexts/AppContext';
 import { getStationInfo, getStations } from './utils/data';
 import PageSwitcher from './components/PageSwitcher';
+import SearchItem from './components/SearchItem';
 
 function App() {
   const { station, setStation, switchStatus, setSwitchStatus } = useContext(AppContext)
@@ -52,7 +53,7 @@ function App() {
         <div style={{ flexDirection: 'column', marginTop: 'calc(50vh - 15px)', alignItems: 'center' }}>
           <input type="text" onChange={handleInput} onKeyDown={search} />
           <div style={{ flexDirection: 'column', zIndex: 1 }}>
-            { stationList.map((stationName) => <span>{stationName}</span>) }
+            { stationList.map((stationName) => <SearchItem key={stationName} itemName={stationName} />) }
           </div>
         </div>
         
