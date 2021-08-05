@@ -48,13 +48,14 @@ function App() {
 
   return (
     <PageSwitcher status={switchStatus}>
-      <div style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <div style={{ flexDirection: 'column' }}>
+      <div style={{ flex: 1, flexDirection: 'column' }}>
+        <div style={{ flexDirection: 'column', marginTop: 'calc(50vh - 15px)', alignItems: 'center' }}>
           <input type="text" onChange={handleInput} onKeyDown={search} />
-          <div style={{ position: 'relative', flexDirection: 'column', zIndex: 1 }}>
+          <div style={{ flexDirection: 'column', zIndex: 1 }}>
             { stationList.map((stationName) => <span>{stationName}</span>) }
           </div>
         </div>
+        
       </div>
     </PageSwitcher>
   );

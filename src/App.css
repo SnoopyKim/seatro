@@ -1,7 +1,13 @@
+#root {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
 div {
   display: flex
 }
 input {
+  display: block;
   width: 300px;
   height: 30px;
 }
