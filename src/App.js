@@ -27,7 +27,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    const array = input === '' ? [] : stations.current?.filter(station => station.indexOf(input) !== -1)
+    const array = input === '' ? [] : stations.current?.filter(station => station.station_name.indexOf(input) !== -1)
     console.log(input, array)
     setStationList(array)
     stationIndex !== 0 && setStationIndex(0);
@@ -58,7 +58,8 @@ function App() {
   const search = () => {
     console.log(stationList[stationIndex])
     if (stationList.length > 0) {
-      getStationInfo(stationList[stationIndex], true).then(res => {
+      const { station_name, line_number } = stationList[stationIndex]
+      getStationInfo(station_name, line_number, true).then(res => {
         console.log(res)
         setStation(res)
         setSwitchStatus(true)
@@ -71,12 +72,12 @@ function App() {
     <PageSwitcher status={switchStatus}>
       <div style={{ flex: 1, flexDirection: 'column' }}>
         <div style={{ flexDirection: 'column', marginTop: 'calc(50vh - 15px)', alignItems: 'center' }}>
-          <input id="search" type="text" onChange={handleInput} onKeyDown={handleKeyDown} onBlur={() => setStationList([])} onFocus={handleInput} value={input}/>
+          <input id="search" type="text" onChange={handleInput} onKeyDown={handleKeyDown} onBlur={() => setStationList([])} onFocus={handleInput} value={input} autoComplete="off"/>
           <div style={{ flexDirection: 'column', zIndex: 1 }}>
-            { stationList.map((stationName, idx) => 
+            { stationList.map((stationData, idx) => 
               <SearchItem 
-                key={stationName} 
-                itemName={stationName}
+                key={stationData.station_name + stationData.line_number} 
+                data={stationData}
                 focus={idx === stationIndex}
                 onHover={() => setStationIndex(idx)}
                 onClick={search}

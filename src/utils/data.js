@@ -21,7 +21,7 @@ export async function getStations(dev=true) {
     }
 }
 
-export async function getStationInfo(station_name, dev=true) {
+export async function getStationInfo(station_name, line_number, dev=true) {
     if (dev) return testData.stationInfo
     try {
         const now = new Date()
@@ -30,9 +30,9 @@ export async function getStationInfo(station_name, dev=true) {
         const day = days[now.getDay()]
         const time = now.getHours()
         const body = JSON.stringify({
-            date: date,
             day: '월',
             station_name: station_name,
+            line_number: line_number,
             time: 1
         })
         console.log(body)

@@ -1,15 +1,20 @@
 const testData = {
     stations: [
-        "강남구청",
-        "건대입구",
-        "고속버스터미널",
-        "군자",
-        "논현",
-        "뚝섬 유원지",
-        "반포",
-        "어린이대공원",
-        "청담",
-        "학동"
+        { station_name: "강남구청", line_number: "7호선" },
+        { station_name: "강남구청", line_number: "분당선" },
+        { station_name: "건대입구", line_number: "2호선" },
+        { station_name: "건대입구", line_number: "7호선" },
+        { station_name: "고속버스터미널", line_number: "3호선" },
+        { station_name: "고속버스터미널", line_number: "7호선" },
+        { station_name: "고속버스터미널", line_number: "9호선" },
+        { station_name: "군자", line_number: "5호선" },
+        { station_name: "군자", line_number: "7호선" },
+        { station_name: "논현", line_number: "7호선" },
+        { station_name: "뚝섬 유원지", line_number: "7호선" },
+        { station_name: "반포", line_number: "7호선" },
+        { station_name: "어린이대공원", line_number: "7호선" },
+        { station_name: "청담", line_number: "7호선" },
+        { station_name: "학동", line_number: "7호선" },
     ],
     stationInfo: [
         {
