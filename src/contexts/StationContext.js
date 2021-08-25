@@ -16,14 +16,9 @@ export const StationProvider = ({ children }) => {
   );
 };
 
-export const useNavState = () => {
+export const useStation = () => {
   const state = useContext(StationStateContext);
-  if (!state) throw new Error('Cannot find StationProvider');
-  return state;
-};
-
-export const useNavDispatch = () => {
   const dispatch = useContext(StationDispatchContext);
-  if (!dispatch) throw new Error('Cannot find StationProvider');
-  return dispatch;
+  if (!state || !dispatch) throw new Error('Cannot find StationProvider');
+  return [state, dispatch];
 };

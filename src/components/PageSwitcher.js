@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSpring, animated } from 'react-spring';
-import { useNavDispatch, useNavState } from '../contexts/NavContext';
+import { useNav } from '../contexts/NavContext';
 
 const containerStyle = {
   position: 'absolute',
@@ -11,8 +11,7 @@ const containerStyle = {
 };
 
 export default function PageSwitcher({ children }) {
-  const state = useNavState();
-  const dispatch = useNavDispatch();
+  const [state, dispatch] = useNav();
 
   const history = useHistory();
 
