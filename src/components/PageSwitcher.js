@@ -5,6 +5,8 @@ import { useNav } from '../contexts/NavContext';
 
 const containerStyle = {
   position: 'absolute',
+  top: 0,
+  left: 0,
   overflow: 'hidden',
   width: '100vw',
   height: '100vh',
@@ -42,6 +44,7 @@ export default function PageSwitcher({ children }) {
 
 const doorStyle = {
   position: 'absolute',
+  top: 0,
   width: '50vw',
   height: '100vh',
   backgroundColor: 'black',

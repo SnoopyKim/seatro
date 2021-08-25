@@ -20,6 +20,11 @@ function reducer(state, action) {
           (station) => station.station_name.indexOf(action.value) !== -1,
         ),
       };
+    case 'INIT_SEARCH':
+      return {
+        ...state,
+        search_list: [],
+      };
     case 'GET_STATION_INFO':
       return {
         ...state,

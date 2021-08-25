@@ -3,16 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { AppContextProvider } from './contexts/AppContext';
-import { NavProvider } from './contexts/NavContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <AppContextProvider>
-      <NavProvider>
-        <App />
-      </NavProvider>
-    </AppContextProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById('root'),
 );
