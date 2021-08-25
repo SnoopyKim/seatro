@@ -46,7 +46,7 @@ input:focus {
   top: 60px;
   width: 100%;
   padding: 16px;
-  border: 1px solid ##2e3c7e;
+  border: 1px solid #2e3c7e;
   box-sizing: border-box;
   background-color: #fff;
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
