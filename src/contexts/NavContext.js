@@ -1,39 +1,11 @@
-import React, {
-  createContext,
-  useEffect,
-  useState,
-  useReducer,
-  useContext,
-} from 'react';
-
-const initialState = {
-  loading: false,
-  path: '/',
-};
-
-function reducer(state, action) {
-  switch (action.type) {
-    case 'NAVIGATE':
-      return {
-        loading: true,
-        path: action.path,
-      };
-    case 'COMPLETE':
-      return {
-        ...state,
-        loading: false,
-      };
-    default:
-      throw new Error(`Unhandled action type: ${action.type}`);
-  }
-}
+import React, { createContext, useContext } from 'react';
+import useNavReducer from '../reducers/navReducer';
 
 const NavStateContext = createContext();
 const NavDispatchContext = createContext();
 
 export const NavProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
+  const [state, dispatch] = useNavReducer();
   return (
     <NavStateContext.Provider value={state}>
       <NavDispatchContext.Provider value={dispatch}>
