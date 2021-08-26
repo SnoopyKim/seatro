@@ -1,53 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap");
-#root {
-  display: block;
-  width: 100vw;
-  height: 100vh;
-  background-color: #fbeaeb;
-  font-family: "Nanum Gothic", sans-serif;
-}
-div {
-  display: flex;
-}
-input {
-  display: block;
-  border: none;
-  flex: 1;
-  font-size: 16px;
-  padding: 8px 16px;
-}
-input:focus {
-  outline: none;
-}
-.InputWrapper {
-  position: relative;
-}
-.SearchWrapper {
-  display: flex;
-  align-items: center;
-  width: 400px;
-  height: 50px;
-  box-sizing: border-box;
-  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
-  background-color: #fff;
-}
-.IconWrapper {
-  background-color: #2e3c7e;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  cursor: pointer;
-  justify-content: center;
-  align-items: center;
-}
-.StationList {
-  position: absolute;
-  left: 0;
-  top: 60px;
-  width: 100%;
-  padding: 16px;
-  border: 1px solid #2e3c7e;
-  box-sizing: border-box;
-  background-color: #fff;
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
+.CenterContainer {
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
