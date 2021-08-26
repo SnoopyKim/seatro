@@ -1,7 +1,7 @@
 import { useReducer } from 'react';
 
 const initialState = {
-  stations: [],
+  stations: {},
   search_list: [],
   station_info: null,
 };
