@@ -1,7 +1,8 @@
 import { useReducer } from 'react';
 
 const initialState = {
-  stations: {},
+  stations: [],
+  popular: {},
   search_list: [],
   station_info: null,
 };
@@ -11,12 +12,13 @@ function reducer(state, action) {
     case 'GET_STATIONS':
       return {
         ...initialState,
-        stations: action.data,
+        stations: action.data.stations_list,
+        popular: action.data.popular_station,
       };
     case 'SEARCH':
       return {
         ...state,
-        search_list: state.stations.filter(
+        search_list: state.stations.stations_list.filter(
           (station) => station.station_name.indexOf(action.value) !== -1,
         ),
       };

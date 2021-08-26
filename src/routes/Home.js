@@ -4,6 +4,7 @@ import { useNav } from '../contexts/NavContext';
 import { getStationInfo } from '../utils/data';
 import './Home.css';
 import SearchBar from '../components/SearchBar';
+import PopularView from '../components/PopularView';
 
 function Home() {
   const [station, dispatchStation] = useStation();
@@ -23,7 +24,9 @@ function Home() {
 
   return (
     <div className="CenterContainer">
+      <h1>Seatro</h1>
       <SearchBar search={search} />
+      <PopularView station={station.popular} />
     </div>
   );
 }
