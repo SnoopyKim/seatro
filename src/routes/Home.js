@@ -16,7 +16,10 @@ function Home() {
       getStationInfo(station_name, line_number, true).then((res) => {
         console.log(res);
         dispatchStation({ type: 'GET_STATION_INFO', data: res });
-        dispatchNav({ type: 'NAVIGATE', path: '/건대입구' });
+        dispatchNav({
+          type: 'NAVIGATE',
+          path: '/station?station_name=건대입구&line=7호선',
+        });
       });
     },
     [dispatchNav, dispatchStation],

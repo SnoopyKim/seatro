@@ -4,6 +4,7 @@ import PageSwitcher from './components/PageSwitcher';
 import { useStation } from './contexts/StationContext';
 import Home from './routes/Home';
 import { getStations } from './utils/data';
+import Result from './routes/Result';
 
 function PageRouter() {
   const [station, setStations] = useStation();
@@ -26,6 +27,7 @@ function PageRouter() {
     <BrowserRouter>
       <PageSwitcher>
         <Route path="/" exact={true} component={Home} />
+        <Route path="/station" component={Result} />
       </PageSwitcher>
     </BrowserRouter>
   );

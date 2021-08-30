@@ -18,7 +18,7 @@ function reducer(state, action) {
     case 'SEARCH':
       return {
         ...state,
-        search_list: state.stations.stations_list.filter(
+        search_list: state.stations.filter(
           (station) => station.station_name.indexOf(action.value) !== -1,
         ),
       };
