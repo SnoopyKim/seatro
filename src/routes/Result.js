@@ -1,6 +1,7 @@
 import React from 'react';
 import qs from 'qs';
 import { useStation } from '../contexts/StationContext';
+import BackButton from './../components/BackButton';
 
 function Result({ location }) {
   const query = qs.parse(location.search, {
@@ -28,6 +29,7 @@ function Result({ location }) {
           alignItems: 'center',
         }}
       >
+        <BackButton />
         <strong>{line}</strong>
         <strong>{station_name}</strong>
         {station_info.map((info) => {
