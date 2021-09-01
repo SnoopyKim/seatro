@@ -2,6 +2,7 @@ import React from 'react';
 import qs from 'qs';
 import { useStation } from '../contexts/StationContext';
 import BackButton from './../components/BackButton';
+import LineBadge from '../components/LineBadge';
 
 function Result({ location }) {
   const query = qs.parse(location.search, {
@@ -22,15 +23,21 @@ function Result({ location }) {
     >
       <div
         style={{
-          marginTop: '2rem',
-          backgroundColor: 'white',
+          marginTop: '5rem',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
         }}
       >
         <BackButton />
-        <strong>{line}</strong>
+        <LineBadge
+          line_number={line}
+          style={{
+            fontSize: '1rem',
+            padding: '0.5rem 2rem',
+            borderRadius: '1rem',
+          }}
+        />
         <strong>{station_name}</strong>
         {station_info.map((info) => {
           return <p>{info.direction}</p>;
