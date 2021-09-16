@@ -3,6 +3,7 @@ import qs from 'qs';
 import { useStation } from '../contexts/StationContext';
 import BackButton from './../components/BackButton';
 import LineBadge from '../components/LineBadge';
+import CabinCard from './../components/CabinCard';
 
 function Result({ location }) {
   const query = qs.parse(location.search, {
@@ -11,6 +12,8 @@ function Result({ location }) {
   const { station_name, line } = query;
   const [station, dispatchStation] = useStation();
   const { station_info } = station;
+
+  const currentTime = new Date().getHours();
 
   return (
     <div
@@ -40,7 +43,15 @@ function Result({ location }) {
         />
         <h1 style={{ fontSize: '2rem' }}>{station_name}</h1>
         {station_info.map((info) => {
-          return <p>{info.direction}</p>;
+          return (
+            <>
+              <p>
+                <b>{info.direction} 방향 예상 이용객</b>&nbsp;&nbsp;
+                {`(${currentTime}:00 ~ ${currentTime + 1}:00 기준)`}
+              </p>
+              <CabinCard info={info} />
+            </>
+          );
         })}
       </div>
     </div>

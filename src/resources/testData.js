@@ -24,15 +24,15 @@ const testData = {
       people: 95,
     },
   },
-  stationInfo: [
+  station_info: [
     {
-      cabin: [3, 10, 10, 10, 10, 10, 10, 10],
+      cabin: [3, 10, 10, 10, 1, 10, 10, 10],
       direction: '어린이대공원',
       first_time: '05:55',
       last_time: '23:55',
     },
     {
-      cabin: [3, 19, 19, 19, 19, 19, 19, 19],
+      cabin: [3, 19, 19, 19, 19, 9, 19, 19],
       direction: '뚝섬 유원지',
       first_time: '05:55',
       last_time: '23:55',

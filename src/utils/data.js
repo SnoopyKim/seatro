@@ -24,7 +24,7 @@ export async function getStations(dev = true) {
 }
 
 export async function getStationInfo(station_name, line_number, dev = true) {
-  if (dev) return testData.stationInfo;
+  if (dev) return testData.station_info;
   try {
     const now = new Date();
     // const month = now.getMonth()+1 < 10 ? '0'+(now.getMonth()+1).toString() : (now.getMonth()+1).toString()
@@ -55,10 +55,10 @@ export async function getStationInfo(station_name, line_number, dev = true) {
       return data;
     } else {
       console.log('서버 오류로 인해 테스트 데이터를 가져옵니다');
-      return testData.stationInfo;
+      return testData.station_info;
     }
   } catch {
     console.log('서버 오류로 인해 테스트 데이터를 가져옵니다');
-    return testData.stationInfo;
+    return testData.station_info;
   }
 }
