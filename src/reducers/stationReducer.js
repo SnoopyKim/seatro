@@ -12,7 +12,7 @@ function reducer(state, action) {
     case 'GET_STATIONS':
       return {
         ...initialState,
-        stations: action.data.stations_list,
+        stations: action.data.station_list,
         popular: action.data.popular_station,
       };
     case 'SEARCH':

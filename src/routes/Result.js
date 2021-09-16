@@ -38,7 +38,7 @@ function Result({ location }) {
             borderRadius: '1rem',
           }}
         />
-        <strong>{station_name}</strong>
+        <h1 style={{ fontSize: '2rem' }}>{station_name}</h1>
         {station_info.map((info) => {
           return <p>{info.direction}</p>;
         })}

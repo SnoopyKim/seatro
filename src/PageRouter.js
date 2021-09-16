@@ -15,7 +15,7 @@ function PageRouter() {
     if (sessionData) {
       setStations({ type: 'GET_STATIONS', data: JSON.parse(sessionData) });
     } else {
-      getStations(true).then((res) => {
+      getStations(false).then((res) => {
         setStations({ type: 'GET_STATIONS', data: res });
         sessionStorage.setItem('stations', JSON.stringify(res));
       });

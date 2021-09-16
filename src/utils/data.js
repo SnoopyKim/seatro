@@ -7,7 +7,7 @@ export async function getStations(dev = true) {
   if (dev) return testData.stations;
   try {
     const response = await fetch(
-      'http://nonge.iptime.org:8841/andmlalgkswnth/mog_api/get_stations',
+      'http://nonge.iptime.org:1414/seatro_api/get_stations',
     );
     if (response.status === 200) {
       const { data } = await response.json();
@@ -34,14 +34,18 @@ export async function getStationInfo(station_name, line_number, dev = true) {
     const body = JSON.stringify({
       station_name,
       line_number,
-      time: 3,
+      time,
     });
     console.log(body);
 
     const response = await fetch(
-      'http://nonge.iptime.org:8841/andmlalgkswnth/mog_api/get_station_info',
+      'http://nonge.iptime.org:1414/seatro_api/get_station_info',
       {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
         body,
       },
     );
