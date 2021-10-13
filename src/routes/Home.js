@@ -13,16 +13,12 @@ function Home() {
   const search = useCallback(
     (station) => {
       const { station_name, line_number } = station;
-      getStationInfo(station_name, line_number, true).then((res) => {
-        console.log(res);
-        dispatchStation({ type: 'GET_STATION_INFO', data: res });
-        dispatchNav({
-          type: 'NAVIGATE',
-          path: '/station?station_name=건대입구&line=7호선',
-        });
+      dispatchNav({
+        type: 'NAVIGATE',
+        path: `/station?station_name=${station_name}&line=${line_number}`,
       });
     },
-    [dispatchNav, dispatchStation],
+    [dispatchNav],
   );
 
   return (

@@ -19,7 +19,7 @@ export default function PageSwitcher({ children }) {
 
   useEffect(() => {
     if (state.loading) {
-      setTimeout(() => history.push(state.path), 500);
+      setTimeout(() => history.replace(state.path), 500);
       setTimeout(() => dispatch({ type: 'COMPLETE' }), 1000);
     }
   }, [state, dispatch, history]);

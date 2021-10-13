@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import qs from 'qs';
 import { useStation } from '../contexts/StationContext';
 import BackButton from './../components/BackButton';
 import LineBadge from '../components/LineBadge';
 import CabinCard from './../components/CabinCard';
+import { getStationInfo } from '../utils/data';
 
 function Result({ location }) {
   const query = qs.parse(location.search, {
@@ -15,6 +16,15 @@ function Result({ location }) {
 
   const currentTime = new Date().getHours();
 
+  useEffect(() => {
+    if (station_name && line) {
+      getStationInfo(station_name, line, true).then((res) => {
+        console.log(res);
+        dispatchStation({ type: 'GET_STATION_INFO', data: res });
+      });
+    }
+  }, [dispatchStation, station_name, line]);
+
   return (
     <div
       style={{
@@ -24,36 +34,49 @@ function Result({ location }) {
         alignItems: 'center',
       }}
     >
-      <div
-        style={{
-          marginTop: '5rem',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <BackButton />
-        <LineBadge
-          line_number={line}
+      <BackButton />
+
+      {station_name && line ? (
+        <div
           style={{
-            fontSize: '1rem',
-            padding: '0.5rem 2rem',
-            borderRadius: '1rem',
+            marginTop: '5rem',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
-        />
-        <h1 style={{ fontSize: '2rem' }}>{station_name}</h1>
-        {station_info.map((info) => {
-          return (
-            <>
-              <p>
-                <b>{info.direction} 방향 예상 이용객</b>&nbsp;&nbsp;
-                {`(${currentTime}:00 ~ ${currentTime + 1}:00 기준)`}
-              </p>
-              <CabinCard info={info} />
-            </>
-          );
-        })}
-      </div>
+        >
+          <LineBadge
+            line_number={line}
+            style={{
+              fontSize: '1rem',
+              padding: '0.5rem 2rem',
+              borderRadius: '1rem',
+            }}
+          />
+          <h1 style={{ fontSize: '2rem' }}>{station_name}</h1>
+          {station_info?.map((info, index) => {
+            return (
+              <React.Fragment key={index}>
+                <p>
+                  <b>{info.direction} 방향 예상 이용객</b>&nbsp;&nbsp;
+                  {`(${currentTime}:00 ~ ${currentTime + 1}:00 기준)`}
+                </p>
+                <CabinCard info={info} />
+              </React.Fragment>
+            );
+          })}
+        </div>
+      ) : (
+        <div
+          style={{
+            flex: 1,
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <h1>해당 지하철역 및 노선 정보가 없습니다</h1>
+        </div>
+      )}
     </div>
   );
 }
