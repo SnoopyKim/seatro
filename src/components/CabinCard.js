@@ -4,7 +4,10 @@ function CabinCard({ info }) {
   const { direction, cabin } = info;
 
   const sum = cabin.reduce((acc, cur) => acc + cur);
-  const min = cabin.reduce((acc, cur, i) => (cabin[acc] < cur ? acc : i), 0);
+  const min = cabin.reduce(
+    (acc, cur, i) => (cabin[acc - 1] < cur ? acc : i + 1),
+    1,
+  );
   return (
     <div
       style={{
@@ -25,17 +28,26 @@ function CabinCard({ info }) {
         }}
       >
         {cabin.map((it, idx) => {
-          const color = it < 5 ? 'green' : it > 10 ? 'red' : 'yellow';
+          const color = it < 5 ? '#fbeaeb' : it > 10 ? '#fb777c' : '#fbadb2';
           return (
             <div
               key={`cabin_${direction}_${idx}`}
               style={{
                 backgroundColor: color,
+                verticalAlign: 'middle',
+                color: '#2e3c7e',
+                fontWeight: 'bold',
+                lineHeight: '0.8em',
+                fontSize: '0.8em',
                 borderRadius: '3px',
                 width: '2rem',
-                height: '0.7rem',
+                height: '1.2rem',
+                justifyContent: 'center',
+                alignItems: 'center',
               }}
-            ></div>
+            >
+              {idx + 1}
+            </div>
           );
         })}
       </div>

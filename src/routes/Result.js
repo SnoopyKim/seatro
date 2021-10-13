@@ -5,6 +5,7 @@ import BackButton from './../components/BackButton';
 import LineBadge from '../components/LineBadge';
 import CabinCard from './../components/CabinCard';
 import { getStationInfo } from '../utils/data';
+import { formatTimeString } from '../utils/convert';
 
 function Result({ location }) {
   const query = qs.parse(location.search, {
@@ -39,7 +40,7 @@ function Result({ location }) {
       {station_name && line ? (
         <div
           style={{
-            marginTop: '5rem',
+            marginTop: '3rem',
             flexDirection: 'column',
             alignItems: 'center',
           }}
@@ -56,9 +57,13 @@ function Result({ location }) {
           {station_info?.map((info, index) => {
             return (
               <React.Fragment key={index}>
-                <p>
+                <p style={{ marginBottom: 5 }}>
                   <b>{info.direction} 방향 예상 이용객</b>&nbsp;&nbsp;
                   {`(${currentTime}:00 ~ ${currentTime + 1}:00 기준)`}
+                </p>
+                <p style={{ marginTop: 5 }}>
+                  첫차: {formatTimeString(info.first_time)}&nbsp;&nbsp;<b>|</b>
+                  &nbsp;&nbsp;막차: {formatTimeString(info.last_time)}
                 </p>
                 <CabinCard info={info} />
               </React.Fragment>

@@ -34,8 +34,8 @@ const testData = {
     {
       cabin: [3, 19, 19, 19, 19, 9, 19, 19],
       direction: '뚝섬 유원지',
-      first_time: '05:55',
-      last_time: '23:55',
+      first_time: '05:50',
+      last_time: '23:50',
     },
   ],
 };
